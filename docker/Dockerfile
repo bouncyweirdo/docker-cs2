@@ -10,13 +10,13 @@ RUN mkdir -p steamcmd && \
     curl -sSL https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz | tar -xz -C steamcmd && \
     steamcmd/steamcmd.sh +quit
 
-# CS2 app dir (chmod 0777 so bind mounts work regardless of host UID)
-RUN mkdir -p /home/steam/cs2 && chmod 0777 /home/steam/cs2
+RUN mkdir -p /home/steam/cs2
 
-COPY --chown=steam:steam entrypoint.sh /home/steam/entrypoint.sh
-RUN chmod +x /home/steam/entrypoint.sh
+COPY --chown=steam:steam entrypoint.sh start.sh /home/steam/
+RUN chmod +x /home/steam/entrypoint.sh /home/steam/start.sh
 
 EXPOSE 27015/tcp 27015/udp 27020/udp
 
-USER steam
+# Start as root so entrypoint can fix bind mount permissions, then drop to steam
+USER root
 CMD ["bash", "entrypoint.sh"]
