@@ -28,7 +28,8 @@ usage() {
     echo "  say <message>     Send a chat message"
     echo "  maxrounds <n>     Set max rounds"
     echo "  warmup <seconds>  Set warmup duration"
-    echo "  endwarmup         End warmup immediately"
+    echo "  startwarmup       Start warmup"
+    echo "  endwarmup         End warmup"
     echo "  freezetime <secs> Set buy time before round (default 10)"
     echo "  roundtime <min>   Set round time in minutes"
     echo "  buytime <secs>    Set buy time in seconds"
@@ -123,6 +124,10 @@ case "$1" in
         [ -z "$2" ] && echo "Usage: ./cs2.sh warmup <seconds>" && exit 1
         send_cmd "mp_warmuptime $2"
         echo "Warmup time set to $2 seconds"
+        ;;
+    startwarmup)
+        send_cmd "mp_warmup_start"
+        echo "Starting warmup"
         ;;
     endwarmup)
         send_cmd "mp_warmup_end"
