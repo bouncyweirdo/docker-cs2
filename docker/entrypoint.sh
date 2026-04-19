@@ -78,6 +78,11 @@ if [ -n "$CS2_PW" ]; then
     CS2_PW_ARGS="+sv_password $CS2_PW"
 fi
 
+CS2_RCON_ARGS=""
+if [ -n "$CS2_RCONPW" ]; then
+    CS2_RCON_ARGS="+rcon_password $CS2_RCONPW"
+fi
+
 # Start CS2 server
 exec bash "$CS2_DIR/game/cs2.sh" -dedicated \
     -console \
@@ -91,6 +96,7 @@ exec bash "$CS2_DIR/game/cs2.sh" -dedicated \
     +hostname "${CS2_SERVERNAME:-CS2 Server}" \
     ${SV_SETSTEAMACCOUNT_ARGS} \
     ${CS2_PW_ARGS} \
+    ${CS2_RCON_ARGS} \
     +sv_cheats "${CS2_CHEATS:-0}" \
     +sv_lan "${CS2_LAN:-0}" \
     +mp_freezetime "${CS2_FREEZETIME:-10}" \
