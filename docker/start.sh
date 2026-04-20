@@ -99,5 +99,10 @@ exec bash "$CS2_DIR/game/cs2.sh" -dedicated \
     ${CS2_RCON_ARGS} \
     +sv_cheats "${CS2_CHEATS:-0}" \
     +sv_lan "${CS2_LAN:-0}" \
-    +mp_freezetime "${CS2_FREEZETIME:-10}" \
+    +mp_maxrounds "${CS2_MAXROUNDS:-24}" \
+    +mp_freezetime "${CS2_FREEZETIME:-15}" \
+    +mp_buytime "${CS2_BUYTIME:-20}" \
+    +mp_autoteambalance "${CS2_AUTOTEAMBALANCE:-1}" \
+    +mp_friendlyfire "${CS2_FRIENDLYFIRE:-1}" \
+    +mp_overtime_enable "${CS2_OVERTIME:-0}" \
     "$@"
